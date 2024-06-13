@@ -1,22 +1,12 @@
 <script setup>
 import { Head, Link, usePage, useForm } from "@inertiajs/vue3";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { ref } from "vue";
 import {} from "@inertiajs/vue3";
-import PokemonCard from "@/Components/PokemonCard.vue";
-
-const props = defineProps({
-    types: Object,
-});
-console.log(props.types);
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
 const form = useForm({
     name: null,
-    weight: null,
-    attack: null,
-    life: null,
-    type_id: null,
     image: null,
+    color: null,
 });
 
 function handleImageError() {
@@ -25,19 +15,20 @@ function handleImageError() {
     document.getElementById("docs-card-content")?.classList.add("!flex-row");
     document.getElementById("background")?.classList.add("!hidden");
 }
+
 </script>
 <template>
     <Head title="Index" />
-    <GuestLayout>
+    <AuthenticatedLayout>
         <form
-            @submit.prevent="form.post(route('pokemon.create', pokemon))"
+            @submit.prevent="form.post(route('types.create'))"
             class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md"
         >
             <div class="mb-4">
                 <label
                     for="name"
                     class="block text-sm font-medium text-gray-700"
-                    >Nom du Pokémon</label
+                    >Nom du type de pokémon</label
                 >
                 <input
                     type="text"
@@ -50,50 +41,19 @@ function handleImageError() {
                     {{ form.errors.name }}
                 </p>
             </div>
-
-            <div class="mb-6">
+            <div class="mb-4">
                 <label
-                    for="weight"
+                    for="name"
                     class="block text-sm font-medium text-gray-700"
-                    >Poids</label
+                    >Couleur</label
                 >
-                <input
-                    type="text"
-                    id="weight"
-                    v-model="form.weight"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez le poids"
-                />
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.weight">
-                    {{ form.errors.weight }}
+                <div>
+                    <input type="color" v-model="form.color" />
+                </div>
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.color">
+                    {{ form.errors.color }}
                 </p>
             </div>
-            <div class="mb-6">
-                <label for="vie" class="block text-sm font-medium text-gray-700"
-                    >PV</label
-                >
-                <input
-                    type="text"
-                    id="life"
-                    v-model="form.life"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez le poids"
-                />
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.life">
-                    {{ form.errors.life }}
-                </p>
-            </div>
-            <select
-                id="type_id"
-                v-model="form.type_id"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            >
-                <option disabled value="">Select a type</option>
-                <option v-for="type in types" :key="type.id" :value="type.id">
-                    {{ type.name }}
-                </option>
-            </select>
-
             <div>
                 <label
                     for="image"
@@ -126,5 +86,5 @@ function handleImageError() {
                 Créer
             </button>
         </form>
-    </GuestLayout>
+    </AuthenticatedLayout>
 </template>

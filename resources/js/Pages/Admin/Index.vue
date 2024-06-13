@@ -1,13 +1,12 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
+import PokemonCard from '@/Components/PokemonCard.vue';
+const { pokemons } = usePage().props;
 import { useForm } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 const form = useForm({});
-const props = defineProps({
-    types: Object,
-});
 
 function handleImageError() {
     document.getElementById('screenshot-container')?.classList.add('!hidden');
@@ -19,7 +18,7 @@ function handleImageError() {
 
 <template>
     <Head title="Index" />
-    <AuthenticatedLayout>
+    <GuestLayout>
         <main class="flex flex-col items-center w-full mt-8">
             <div class="w-full max-w-4xl px-4 py-3 bg-white shadow-md rounded-lg">
                 <table class="w-full text-sm text-gray-700">
@@ -32,17 +31,17 @@ function handleImageError() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="types in props.types" :key="types.id"
+                        <tr v-for="pokemon in pokemons" :key="pokemon.id"
                             class="border-b hover:bg-gray-50">
-                            <td class="px-6 py-4">{{ types.name }}</td>
-                            <td class="px-6 py-4">{{ types.image }}</td>
-                            <td class="px-6 py-4">{{ types.updated_at }}</td>
+                            <td class="px-6 py-4">{{ pokemon.name }}</td>
+                            <td class="px-6 py-4">{{ pokemon.weight }}</td>
+                            <td class="px-6 py-4">{{ pokemon.created_at }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex space-x-3">
-                                    <a :href="route('types.edit', types)" class="text-blue-500 hover:text-blue-700">
+                                    <a :href="route('pokemon.edit', pokemon)" class="text-blue-500 hover:text-blue-700">
                                         <i class="ri-edit-line"></i>
                                     </a>
-                                    <form @submit.prevent="form.delete(route('types.delete', types))">
+                                    <form @submit.prevent="form.delete(route('pokemon.delete', pokemon))">
                                         <button type="submit" class="text-red-500 hover:text-red-700" :disabled="form.processing">
                                             <i class="ri-delete-bin-2-line"></i>
                                         </button>
@@ -52,8 +51,8 @@ function handleImageError() {
                         </tr>
                     </tbody>
                 </table>
-                <form @submit.prevent="form.get(route('types.create'))" class="w-full max-w-4xl px-4 py-3 mt-4 bg-white shadow-md rounded-lg">
-                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">Créer un type de pokémon</button>
+                <form @submit.prevent="form.get(route('pokemon.create'))" class="w-full max-w-4xl px-4 py-3 mt-4 bg-white shadow-md rounded-lg">
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700">Créer un Pokémon</button>
                 </form>
             </div>
 
@@ -61,5 +60,5 @@ function handleImageError() {
         <footer class="py-16 text-center text-sm text-black dark:text-white/70">
             Ceci est mon footer
         </footer>
-    </AuthenticatedLayout>
+    </GuestLayout>
 </template >

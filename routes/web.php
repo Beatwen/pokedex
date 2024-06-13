@@ -11,13 +11,29 @@ use Inertia\Inertia;
 
 Route::get('/', [HomepageController::class, 'index'])->name('index');
 Route::get('/pokemons/{pokemon}', [PokemonController::class, 'show'])->name('pokemon.show');
-Route::get('/admin/edit/{pokemon}', [PokemonController::class, 'edit'])->middleware(['auth', 'verified'])->name('pokemon.edit');
-Route::get('/admin/pokemon', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('admin/index');
-Route::delete('/admin/pokemon/delete/{pokemon}', [PokemonController::class, 'destroy'])->middleware(['auth', 'verified'])->name('pokemon.delete');
-Route::post('/admin/pokemon/update/{pokemon}', [PokemonController::class, 'update'])->middleware(['auth', 'verified'])->name('pokemon.update');
-Route::get('/admin/pokemon/create', [PokemonController::class, 'create'])->middleware(['auth', 'verified'])->name('pokemon.create');
-Route::post('/admin/pokemon/create', [PokemonController::class, 'store'])->middleware(['auth', 'verified'])->name('pokemon.create');
-Route::get('/admin/types', [TypeController::class, 'index'])->middleware(['auth', 'verified'])->name('types.index');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('admin/pokemon', [AdminController::class, 'index'])->name('admin/index');
+    Route::get('/types', [TypeController::class, 'index'])->name('types.index');
+    Route::get('/attaques', [TypeController::class, 'index'])->name('attaques.index');
+
+    route::group(['prefix' => 'types'], function() {
+        Route::get('/edit/{type}', [TypeController::class, 'edit'])->name('types.edit');
+        Route::delete('/delete/{type}', [TypeController::class, 'destroy'])->name('types.delete');
+        Route::post('/update/{type}', [TypeController::class, 'update'])->name('types.update');
+        Route::get('/create', [TypeController::class, 'create'])->name('types.create');
+        Route::post('/create', [TypeController::class, 'store'])->name('types.store');
+    });
+
+    Route::group(['prefix' => 'pokemon'], function() {
+        Route::get('/edit/{pokemon}', [PokemonController::class, 'edit'])->name('pokemon.edit');
+        Route::delete('/delete/{pokemon}', [PokemonController::class, 'destroy'])->name('pokemon.delete');
+        Route::post('/update/{pokemon}', [PokemonController::class, 'update'])->name('pokemon.update');
+        Route::get('/create', [PokemonController::class, 'create'])->name('pokemon.create');
+        Route::post('/create', [PokemonController::class, 'store'])->name('pokemon.store');
+    });
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

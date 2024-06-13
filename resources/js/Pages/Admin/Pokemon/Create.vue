@@ -3,7 +3,6 @@ import { Head, Link, usePage, useForm } from "@inertiajs/vue3";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import { ref } from "vue";
 import {} from "@inertiajs/vue3";
-import PokemonCard from "@/Components/PokemonCard.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
 const props = defineProps({
@@ -31,7 +30,7 @@ function handleImageError() {
     <Head title="Index" />
     <AuthenticatedLayout>
         <form
-            @submit.prevent="form.post(route('pokemon.create', pokemon))"
+            @submit.prevent="form.post(route('pokemon.create'))"
             class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md"
         >
             <div class="mb-4">

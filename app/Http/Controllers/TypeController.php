@@ -23,7 +23,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Types/Create');
     }
 
     /**
@@ -31,7 +31,15 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $type = new Type();
+        $type->name = $request->name;
+        $type->color = $request->color;
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $destinationPath = public_path('storage/');
+        $file->move($destinationPath, $filename);
+        $type->image = 'images/' . $filename;
+        $type->save();
     }
 
     /**
@@ -47,7 +55,8 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        $TypesWithPokemon = $type->load('pokemon');
+        return Inertia::render('Admin/Types/Edit' , ['types' => $TypesWithPokemon]);
     }
 
     /**

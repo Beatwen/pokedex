@@ -49,7 +49,7 @@ class PokemonController extends Controller
         $filename = $file->getClientOriginalName();
         $destinationPath = public_path('storage/');
         $file->move($destinationPath, $filename);
-        $pokemon->image = '/' . $filename;
+        $pokemon->image = 'images/' . $filename;
         $pokemon->save();
         $pokemon->type()->attach($request->type_id);
 

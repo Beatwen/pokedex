@@ -4,7 +4,6 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { ref } from "vue";
 import {} from "@inertiajs/vue3";
 import PokemonCard from "@/Components/PokemonCard.vue";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 const props = defineProps({
     pokemon: Object,
 });

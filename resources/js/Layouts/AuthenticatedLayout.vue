@@ -27,14 +27,14 @@ import { Link } from '@inertiajs/vue3';
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('index')" :active="route().current('index')">
+                                <NavLink :href="route('admin/index')" :active="route().current('admin/index')">
                                     Pokémon
                                 </NavLink>
                                 <NavLink :href="route('types.index')" :active="route().current('types.index')">
                                     Types
                                 </NavLink>
                                 <NavLink :href="route('attaques.index')" :active="route().current('attaques.index')">
-                                    Types
+                                    Attaques
                                 </NavLink>
                             </div>
                         </div>
