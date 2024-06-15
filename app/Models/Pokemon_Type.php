@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pokemon_Type extends Model
 {
     use HasFactory;
-    protected $table = 'pokemon_type'; // Spécifiez explicitement le nom de la table
+    protected $table = 'pokemon_types'; // Spécifiez explicitement le nom de la table
     public $timestamps = false; // Désactiver les timestamps si non nécessaires
 
     protected $fillable = [

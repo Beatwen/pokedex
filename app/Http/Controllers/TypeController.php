@@ -36,9 +36,9 @@ class TypeController extends Controller
         $type->color = $request->color;
         $file = $request->file('image');
         $filename = $file->getClientOriginalName();
-        $destinationPath = public_path('storage/');
+        $destinationPath = public_path('storage/images/background');
         $file->move($destinationPath, $filename);
-        $type->image = 'images/' . $filename;
+        $type->image = 'images/background/' . $filename;
         $type->save();
     }
 
@@ -64,14 +64,20 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        $type->name = $request->name;
+        $type->color = $request->color;
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $destinationPath = public_path('storage/images/background');
+        $file->move($destinationPath, $filename);
+        $type->image = 'images/background/' . $filename;
+        $type->save();
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
     }
 }

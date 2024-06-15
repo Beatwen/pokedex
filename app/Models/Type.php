@@ -16,7 +16,7 @@ class Type extends Model
     ];
     public function pokemon()
     {
-        return $this->belongsToMany(Pokemon::class, 'pokemon_type');
+        return $this->belongsToMany(Pokemon::class, 'pokemon_types');
     }
 
     public function attaque()

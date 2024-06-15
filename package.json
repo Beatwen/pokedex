@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@tailwindcss/aspect-ratio": "^0.4.2",
+        "date-fns": "^3.6.0",
         "remixicon": "^4.2.0"
     }
 }

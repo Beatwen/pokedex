@@ -31,28 +31,24 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'name' => 'required|string|max:255',
             'weight' => 'required|numeric',
             'life' => 'required|numeric',
-            'type_id' => 'required|exists:types,id',  // Ensure the type ID exists
-            'image' => 'sometimes|file|image|max:2048',  // Optional image upload
+            'type_id' => 'required|exists:types,id',
+            'image' => 'required|file|image|max:2048',
         ]);
-
-        // Create a new Pokemon instance
         $pokemon = new Pokemon();
         $pokemon->name = $request->name;
         $pokemon->weight = $request->weight;
         $pokemon->life = $request->life;
         $file = $request->file('image');
         $filename = $file->getClientOriginalName();
-        $destinationPath = public_path('storage/');
+        $destinationPath = public_path('storage/images/pokemon');
         $file->move($destinationPath, $filename);
-        $pokemon->image = 'images/' . $filename;
+        $pokemon->image = 'images/pokemon/' . $filename;
         $pokemon->save();
         $pokemon->type()->attach($request->type_id);
-
     }
 
 
@@ -84,9 +80,9 @@ class PokemonController extends Controller
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $filename = $file->getClientOriginalName();
-                $destinationPath = public_path('storage/');
+                $destinationPath = public_path('storage/images/pokemon/');
                 $file->move($destinationPath, $filename);
-                $pokemon->image = '/' . $filename;
+                $pokemon->image = '/images/pokemon/' . $filename;
                 }
             $pokemon->save();
     }

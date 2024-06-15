@@ -1,17 +1,16 @@
 <script setup>
 import { Head, Link, usePage, useForm } from "@inertiajs/vue3";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { ref } from "vue";
 import {} from "@inertiajs/vue3";
-import PokemonCard from "@/Components/PokemonCard.vue";
+import TypeCard from "@/Components/TypeCard.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 const props = defineProps({
-    pokemon: Object,
+    types: Object,
 });
-
+console.log(props.types);
 const form = useForm({
-    name: props.pokemon.name,
-    weight: props.pokemon.weight,
-    image: null,
+    name: props.types.name,
+    color: props.types.color,
+    image: props.types.image,
 });
 
 function handleImageError() {
@@ -23,19 +22,19 @@ function handleImageError() {
 </script>
 <template>
     <Head title="Index" />
-    <GuestLayout>
+    <AuthenticatedLayout>
         <form
-            @submit.prevent="form.post(route('pokemon.update', pokemon))"
+            @submit.prevent="form.post(route('types.update', types))"
             class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md"
         >
             <div class="mb-4">
                 <label
                     for="name"
                     class="block text-sm font-medium text-gray-700"
-                    >Nom du Pokémon</label
+                    >Nom du Type</label
                 >
                 <input
-                    type="text"
+                    types="text"
                     id="name"
                     v-model="form.name"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -48,19 +47,19 @@ function handleImageError() {
 
             <div class="mb-6">
                 <label
-                    for="weight"
+                    for="color"
                     class="block text-sm font-medium text-gray-700"
-                    >Poids</label
+                    >Couleur</label
                 >
                 <input
-                    type="text"
-                    id="weight"
-                    v-model="form.weight"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez le poids"
+                    type="color"
+                    id="color"
+                    v-model="form.color"
+                    class="block w-full px-3 py-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Entrez la couleur"
                 />
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.weight">
-                    {{ form.errors.weight }}
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.color">
+                    {{ form.errors.color }}
                 </p>
             </div>
             <div>
@@ -76,19 +75,19 @@ function handleImageError() {
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="Entrez l'image"
                 />
-                <!-- <progress
+                <progress
                     v-if="form.progress"
                     :value="form.progress.percentage"
                     max="100"
                 >
                     {{ form.progress.percentage }}%
-                </progress> -->
+                </progress>
                 <p class="mt-2 text-sm text-red-600" v-if="form.errors.image">
                     {{ form.errors.image }}
                 </p>
             </div>
             <button
-                type="submit"
+                types="submit"
                 :disabled="form.processing"
                 class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
             >
@@ -96,7 +95,7 @@ function handleImageError() {
             </button>
         </form>
         <div class="flex w-full justify-center">
-            <PokemonCard :pokemon="pokemon"></PokemonCard>
+            <TypeCard :types="types"></TypeCard>
         </div>
-    </GuestLayout>
+    </AuthenticatedLayout>
 </template>

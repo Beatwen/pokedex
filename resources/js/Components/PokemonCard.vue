@@ -7,7 +7,7 @@ const props = defineProps({
     pokemon: Object,
 });
 const assetURL = computed(() => `/storage/${props.pokemon.image}`);
-const assetBackgroundURL = computed(() => `/storage/images/background/type${props.pokemon.type[0].name}.png`);
+const assetBackgroundURL = computed(() => `/storage/images/background/${props.pokemon.type[0].name}.png`);
 
 </script>
 

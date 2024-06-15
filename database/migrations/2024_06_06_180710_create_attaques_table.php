@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->integer('power');
-            $table->foreignId('type_id')->constrained('types');
+            $table->integer('power')->nullable();
+            $table->foreignId('type_id')->constrained('types')->onDelete('cascade');
+            $table->string('category');
+            $table->integer('accuracy')->nullable();
+            $table->integer('pp');
             $table->string('description');
+            $table->integer('probability')->nullable();
         });
     }
 

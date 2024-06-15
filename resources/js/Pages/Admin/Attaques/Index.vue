@@ -1,9 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import { ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
-import PokemonCard from '@/Components/PokemonCard.vue';
 const { pokemons } = usePage().props;
 import { useForm } from '@inertiajs/vue3';
 const form = useForm({});
@@ -25,7 +23,7 @@ function handleImageError() {
                     <thead class="bg-gray-100">
                         <tr>
                             <th class="px-6 py-3 text-left font-medium border-b-2">Nom</th>
-                            <th class="px-6 py-3 text-left font-medium border-b-2">Poids</th>
+                            <th class="px-6 py-3 text-left font-medium border-b-2">Dégats</th>
                             <th class="px-6 py-3 text-left font-medium border-b-2">Date de création</01></th>
                             <th class="px-6 py-3 text-left font-medium border-b-2">Actions</th>
                         </tr>
