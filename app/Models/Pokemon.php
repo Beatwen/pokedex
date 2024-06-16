@@ -12,12 +12,13 @@ class Pokemon extends Model
         'life',
         'weight',
         'type',
+        'description',
     ];
     use HasFactory;
     public function type()
     {
 
-        return $this->belongsToMany(Type::class, 'pokemon_types');
+        return $this->belongsToMany(Type::class, 'pokemon_types')->orderByPivot('created_at', 'desc');
     }
     public function attaque()
     {

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('life');
             $table->float('weight');
             $table->string('image');
+            $table->string('description',1000)->default("Oh non, ce pokémon n a pas encore de cool description !");
         });
     }
 

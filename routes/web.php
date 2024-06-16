@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\AttaqueController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PokemonController;
@@ -15,7 +16,7 @@ Route::get('/pokemons/{pokemon}', [PokemonController::class, 'show'])->name('pok
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
     Route::get('admin/pokemon', [AdminController::class, 'index'])->name('admin/index');
     Route::get('/types', [TypeController::class, 'index'])->name('types.index');
-    Route::get('/attaques', [TypeController::class, 'index'])->name('attaques.index');
+    Route::get('/attaques', [AttaqueController::class, 'index'])->name('attaques.index');
 
     route::group(['prefix' => 'types'], function() {
         Route::get('/edit/{type}', [TypeController::class, 'edit'])->name('types.edit');
@@ -31,6 +32,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
         Route::post('/update/{pokemon}', [PokemonController::class, 'update'])->name('pokemon.update');
         Route::get('/create', [PokemonController::class, 'create'])->name('pokemon.create');
         Route::post('/create', [PokemonController::class, 'store'])->name('pokemon.store');
+        Route::post('/pokemon/{pokemon}/addAttaque', [PokemonController::class, 'addAttaque'])->name('pokemon.addAttaque');
+        Route::delete('/pokemon/{pokemon}/removeAttaque', [PokemonController::class, 'removeAttaque'])->name('pokemon.removeAttaque');
+    });
+    Route::group(['prefix' => 'attaques'], function() {
+        Route::get('/edit/{attaque}', [AttaqueController::class, 'edit'])->name('attaques.edit');
+        Route::delete('/delete/{attaque}', [AttaqueController::class, 'destroy'])->name('attaques.delete');
+        Route::post('/update/{attaque}', [AttaqueController::class, 'update'])->name('attaques.update');
+        Route::get('/create', [AttaqueController::class, 'create'])->name('attaques.create');
+        Route::post('/create', [AttaqueController::class, 'store'])->name('attaques.store');
     });
 });
 

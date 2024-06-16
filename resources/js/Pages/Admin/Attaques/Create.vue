@@ -1,22 +1,20 @@
 <script setup>
-import { Head, Link, usePage, useForm } from "@inertiajs/vue3";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { ref } from "vue";
-import {} from "@inertiajs/vue3";
-import PokemonCard from "@/Components/PokemonCard.vue";
+import { Head, useForm } from "@inertiajs/vue3";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
 const props = defineProps({
-    types: Object,
+    attack: Object,
 });
-console.log(props.types);
 
 const form = useForm({
-    name: null,
-    weight: null,
-    attack: null,
-    life: null,
-    type_id: null,
-    image: null,
+    name: props.attack.name,
+    power: props.attack.power,
+    category: props.attack.category,
+    accuracy: props.action.accuracy,
+    type_id: props.attack.type_id,
+    pp: props.attack.pp,
+    probability: props.attack.probability,
+    description: props.attack.description,
 });
 
 function handleImageError() {
@@ -26,98 +24,120 @@ function handleImageError() {
     document.getElementById("background")?.classList.add("!hidden");
 }
 </script>
+
 <template>
     <Head title="Index" />
-    <GuestLayout>
+    <AuthenticatedLayout>
         <form
-            @submit.prevent="form.post(route('pokemon.create', pokemon))"
+            @submit.prevent="form.post(route('attaques.create'))"
             class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md"
         >
+            <!-- Nom de l'attaque -->
             <div class="mb-4">
-                <label
-                    for="name"
-                    class="block text-sm font-medium text-gray-700"
-                    >Nom du Pokémon</label
-                >
+                <label for="name" class="block text-sm font-medium text-gray-700">Nom de l'attaque</label>
                 <input
                     type="text"
                     id="name"
                     v-model="form.name"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez le nom"
+                    placeholder="Entrez le nom de l'attaque"
                 />
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.name">
-                    {{ form.errors.name }}
-                </p>
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.name">{{ form.errors.name }}</p>
             </div>
 
-            <div class="mb-6">
-                <label
-                    for="weight"
-                    class="block text-sm font-medium text-gray-700"
-                    >Poids</label
-                >
+            <!-- Puissance -->
+            <div class="mb-4">
+                <label for="power" class="block text-sm font-medium text-gray-700">Puissance</label>
                 <input
-                    type="text"
-                    id="weight"
-                    v-model="form.weight"
+                    type="number"
+                    id="power"
+                    v-model="form.power"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez le poids"
+                    placeholder="Entrez la puissance de l'attaque"
                 />
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.weight">
-                    {{ form.errors.weight }}
-                </p>
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.power">{{ form.errors.power }}</p>
             </div>
-            <div class="mb-6">
-                <label for="vie" class="block text-sm font-medium text-gray-700"
-                    >PV</label
-                >
-                <input
-                    type="text"
-                    id="life"
-                    v-model="form.life"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez le poids"
-                />
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.life">
-                    {{ form.errors.life }}
-                </p>
-            </div>
-            <select
-                id="type_id"
-                v-model="form.type_id"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            >
-                <option disabled value="">Select a type</option>
-                <option v-for="type in types" :key="type.id" :value="type.id">
-                    {{ type.name }}
-                </option>
-            </select>
 
-            <div>
-                <label
-                    for="image"
-                    class="block text-sm font-medium text-gray-700"
-                    >Image</label
-                >
+            <!-- Catégorie -->
+            <div class="mb-4">
+                <label for="category" class="block text-sm font-medium text-gray-700">Catégorie</label>
                 <input
-                    type="file"
-                    id="image"
-                    @input="form.image = $event.target.files[0]"
+                    type="text"
+                    id="category"
+                    v-model="form.category"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez l'image"
+                    placeholder="Entrez la catégorie"
                 />
-                <progress
-                    v-if="form.progress"
-                    :value="form.progress.percentage"
-                    max="100"
-                >
-                    {{ form.progress.percentage }}%
-                </progress>
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.image">
-                    {{ form.errors.image }}
-                </p>
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.category">{{ form.errors.category }}</p>
             </div>
+
+            <!-- Précision -->
+            <div class="mb-4">
+                <label for="accuracy" class="block text-sm font-medium text-gray-700">Précision</label>
+                <input
+                    type="number"
+                    id="accuracy"
+                    v-model="form.accuracy"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Entrez la précision"
+                />
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.accuracy">{{ form.errors.accuracy }}</p>
+            </div>
+
+            <!-- PP (Points de pouvoir) -->
+            <div class="mb-4">
+                <label for="pp" class="block text-sm font-medium text-gray-700">PP</label>
+                <input
+                    type="number"
+                    id="pp"
+                    v-model="form.pp"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Entrez le nombre de PP"
+                />
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.pp">{{ form.errors.pp }}</p>
+            </div>
+
+            <!-- Type -->
+            <div class="mb-4">
+                <label for="type_id" class="block text-sm font-medium text-gray-700">Type</label>
+                <select
+                    id="type_id"
+                    v-model="form.type_id"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                    <option disabled value="">Sélectionnez un type</option>
+                    <option v-for="type in props.types" :key="type.id" :value="type.id">
+                        {{ type.name }}
+                    </option>
+                </select>
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.type_id">{{ form.errors.type_id }}</p>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea
+                    id="description"
+                    v-model="form.description"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Entrez une description"
+                ></textarea>
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.description">{{ form.errors.description }}</p>
+            </div>
+
+            <!-- Probabilité -->
+            <div class="mb-4">
+                <label for="accuracy" class="block text-sm font-medium text-gray-700">Probabilité</label>
+                <input
+                    type="number"
+                    id="accuracy"
+                    v-model="form.probability"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Entrez la probabilité de l'attaque"
+                />
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.accuracy">{{ form.errors.accuracy }}</p>
+            </div>
+
             <button
                 type="submit"
                 :disabled="form.processing"
@@ -126,5 +146,6 @@ function handleImageError() {
                 Créer
             </button>
         </form>
-    </GuestLayout>
+    </AuthenticatedLayout>
 </template>
+

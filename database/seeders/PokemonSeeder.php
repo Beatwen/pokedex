@@ -16,6 +16,7 @@ class PokemonSeeder extends  Seeder
             'life' => 100,
             'weight' => 100.0,
             'image' => 'images/pokemon/carapute.jpeg',
+            'description' => 'Carapute, un cousin éloigné de Carapuce, avec une petite touche de malice ! Contrairement à son parent relativement timide et réservé, Carapute a exploré les côtés plus... colorés de la vie Pokémon. Attention si vous croisez Carapute sur votre chemin, il pourrait bien vous entraîner dans une escapade nocturne dont vous vous souviendrez!'
         ]);
         $type = Type::firstOrCreate([
             'name' => 'Eau',
@@ -26,6 +27,7 @@ class PokemonSeeder extends  Seeder
             'life' => 112,
             'weight' => 100.0,
             'image' => 'images/pokemon/bitebizarre.jpeg',
+
         ]);
         $BitebizzareType = Type::firstOrCreate([
             'name' => 'Plante',

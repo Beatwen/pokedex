@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Attaques\CreateAttaqueRequest;
+use App\Http\Requests\Attaques\UpdateAttaqueRequest;
 use App\Models\Attaque;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -24,29 +26,27 @@ class AttaqueController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Attaques/Create');
+        $types = Type::all();
+        return Inertia::render('Admin/Attaques/Create', ['types' => $types]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateAttaqueRequest $request)
     {
-        $attaque = new Type();
-        $attaque->name = $request->name;
-        $attaque->color = $request->color;
-        $file = $request->file('image');
-        $filename = $file->getClientOriginalName();
-        $destinationPath = public_path('storage/images/background');
-        $file->move($destinationPath, $filename);
-        $attaque->image = 'images/background/' . $filename;
+        $attaque = new Attaque();
+        $validated = $request->validated();
+        $attaque->fill($validated);
         $attaque->save();
+
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Type $attaque)
+    public function show(Attaque $attaque)
     {
         //
     }
@@ -54,24 +54,20 @@ class AttaqueController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Type $attaque)
+    public function edit(Attaque $attaque)
     {
-        $TypesWithPokemon = $attaque->load('pokemon');
-        return Inertia::render('Admin/Types/Edit' , ['types' => $TypesWithPokemon]);
+        $types = Type::all();
+        $attaqueWithTypes = $attaque->load('type');
+        return Inertia::render('Admin/Attaques/Edit', ['attaques' => $attaqueWithTypes, 'types' => $types]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Type $attaque)
+    public function update(UpdateAttaqueRequest $request, Attaque $attaque)
     {
-        $attaque->name = $request->name;
-        $attaque->color = $request->color;
-        $file = $request->file('image');
-        $filename = $file->getClientOriginalName();
-        $destinationPath = public_path('storage/images/background');
-        $file->move($destinationPath, $filename);
-        $attaque->image = 'images/background/' . $filename;
+        $validated = $request->validated();
+        $attaque->fill($validated);
         $attaque->save();
     }
     /**

@@ -1,17 +1,22 @@
 <script setup>
-import { Head, Link, usePage, useForm } from "@inertiajs/vue3";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { ref } from "vue";
-import {} from "@inertiajs/vue3";
-import PokemonCard from "@/Components/PokemonCard.vue";
-const props = defineProps({
-    pokemon: Object,
-});
+import { Head, useForm } from "@inertiajs/vue3";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
+const props = defineProps({
+    attaques: Object,
+    types: Array,
+});
+console.log(props.attaques);
 const form = useForm({
-    name: props.pokemon.name,
-    weight: props.pokemon.weight,
-    image: null,
+    name: props.attaques.name,
+    power: props.attaques.power,
+    category: props.attaques.category,
+    accuracy: props.attaques.accuracy,
+    type_id: props.attaques.type_id,
+    type_id2: props.attaques.type_id2,
+    pp: props.attaques.pp,
+    probability: props.attaques.probability,
+    description: props.attaques.description,
 });
 
 function handleImageError() {
@@ -21,72 +26,111 @@ function handleImageError() {
     document.getElementById("background")?.classList.add("!hidden");
 }
 </script>
+
 <template>
-    <Head title="Index" />
-    <GuestLayout>
+    <Head title="Edit Attack" />
+    <AuthenticatedLayout>
         <form
-            @submit.prevent="form.post(route('pokemon.update', pokemon))"
+            @submit.prevent="form.post(route('attaques.update', attaques.id))"
             class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md"
         >
+            <!-- Name -->
             <div class="mb-4">
-                <label
-                    for="name"
-                    class="block text-sm font-medium text-gray-700"
-                    >Nom du Pokémon</label
-                >
+                <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
                 <input
                     type="text"
                     id="name"
                     v-model="form.name"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez le nom"
+                    placeholder="Enter attaques name"
                 />
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.name">
-                    {{ form.errors.name }}
-                </p>
             </div>
 
-            <div class="mb-6">
-                <label
-                    for="weight"
-                    class="block text-sm font-medium text-gray-700"
-                    >Poids</label
-                >
+            <!-- Power -->
+            <div class="mb-4">
+                <label for="power" class="block text-sm font-medium text-gray-700">Dégats</label>
+                <input
+                    type="number"
+                    id="power"
+                    v-model="form.power"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Enter power"
+                />
+            </div>
+
+            <!-- Category -->
+            <div class="mb-4">
+                <label for="category" class="block text-sm font-medium text-gray-700">Categorie</label>
                 <input
                     type="text"
-                    id="weight"
-                    v-model="form.weight"
+                    id="category"
+                    v-model="form.category"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez le poids"
+                    placeholder="Enter category"
                 />
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.weight">
-                    {{ form.errors.weight }}
-                </p>
             </div>
-            <div>
-                <label
-                    for="image"
-                    class="block text-sm font-medium text-gray-700"
-                    >Image</label
-                >
+
+            <!-- Accuracy -->
+            <div class="mb-4">
+                <label for="accuracy" class="block text-sm font-medium text-gray-700">Précision</label>
                 <input
-                    type="file"
-                    id="image"
-                    @input="form.image = $event.target.files[0]"
+                    type="number"
+                    id="accuracy"
+                    v-model="form.accuracy"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Entrez l'image"
+                    placeholder="Enter accuracy"
                 />
-                <!-- <progress
-                    v-if="form.progress"
-                    :value="form.progress.percentage"
-                    max="100"
-                >
-                    {{ form.progress.percentage }}%
-                </progress> -->
-                <p class="mt-2 text-sm text-red-600" v-if="form.errors.image">
-                    {{ form.errors.image }}
-                </p>
             </div>
+
+            <!-- Type ID -->
+            <div class="mb-4">
+                <label for="type_id" class="block text-sm font-medium text-gray-700">Type</label>
+                <select
+                    id="type_id"
+                    v-model="form.type_id"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                    <option disabled value="">Select a type</option>
+                    <option v-for="type in types" :key="type.id" :value="type.id">{{ type.name }}</option>
+                </select>
+            </div>
+
+            <!-- PP -->
+            <div class="mb-4">
+                <label for="pp" class="block text-sm font-medium text-gray-700">PP</label>
+                <input
+                    type="number"
+                    id="pp"
+                    v-model="form.pp"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Enter PP"
+                />
+            </div>
+
+            <!-- Probability -->
+            <div class="mb-4">
+                <label for="probability" class="block text-sm font-medium text-gray-700">Probabilité</label>
+                <input
+                    type="number"
+                    id="probability"
+                    v-model="form.probability"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Enter probability"
+                />
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea
+                    id="description"
+                    v-model="form.description"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Enter a description"
+                ></textarea>
+            </div>
+
+            <!-- Submit Button -->
             <button
                 type="submit"
                 :disabled="form.processing"
@@ -95,8 +139,7 @@ function handleImageError() {
                 Modifier
             </button>
         </form>
-        <div class="flex w-full justify-center">
-            <PokemonCard :pokemon="pokemon"></PokemonCard>
-        </div>
-    </GuestLayout>
+    </AuthenticatedLayout>
 </template>
+
+

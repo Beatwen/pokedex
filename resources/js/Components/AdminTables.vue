@@ -8,6 +8,7 @@ const diffForHumans = (date) => {
 const form = useForm({});
 const props = defineProps({
     propsObject: Object,
+    objectName: String,
 });
 console.log(props.propsObject);
 </script>
@@ -44,14 +45,14 @@ console.log(props.propsObject);
                 <td class="px-6 py-4">
                     <div class="flex space-x-3">
                         <a
-                            :href="route('types.edit', propsObject)"
+                            :href="route(`${objectName}.edit`, propsObject)"
                             class="text-blue-500 hover:text-blue-700"
                         >
                             <i class="ri-edit-line"></i>
                         </a>
                         <form
                             @submit.prevent="
-                                form.delete(route('types.delete', propsObject))
+                                form.delete(route(`${objectName}.delete`, propsObject))
                             "
                         >
                             <button

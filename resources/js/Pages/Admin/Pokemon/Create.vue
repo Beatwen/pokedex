@@ -1,14 +1,10 @@
 <script setup>
-import { Head, Link, usePage, useForm } from "@inertiajs/vue3";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { ref } from "vue";
-import {} from "@inertiajs/vue3";
+import { Head, useForm } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
 const props = defineProps({
     types: Object,
 });
-console.log(props.types);
 
 const form = useForm({
     name: null,
@@ -16,6 +12,7 @@ const form = useForm({
     attack: null,
     life: null,
     type_id: null,
+    type_id2: null,
     image: null,
 });
 
@@ -58,7 +55,7 @@ function handleImageError() {
                     >Poids</label
                 >
                 <input
-                    type="text"
+                    type="number"
                     id="weight"
                     v-model="form.weight"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -73,7 +70,7 @@ function handleImageError() {
                     >PV</label
                 >
                 <input
-                    type="text"
+                    type="number"
                     id="life"
                     v-model="form.life"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -83,17 +80,42 @@ function handleImageError() {
                     {{ form.errors.life }}
                 </p>
             </div>
+            <div>
+                <label
+                    for="image"
+                    class="block text-sm font-medium text-gray-700"
+                    >Type(s)</label
+                >
+
             <select
                 id="type_id"
                 v-model="form.type_id"
                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
-                <option disabled value="">Select a type</option>
+                <option disabled value="">Selectionner un type</option>
                 <option v-for="type in types" :key="type.id" :value="type.id">
                     {{ type.name }}
                 </option>
             </select>
+            </div>
+            <div>
+                <label
+                    for="image"
+                    class="block text-sm font-medium text-gray-700"
+                    >Type(s)</label
+                >
 
+            <select
+                id="type_id"
+                v-model="form.type_id2"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+                <option disabled value="">Selectionner un type</option>
+                <option v-for="type in types" :key="type.id" :value="type.id">
+                    {{ type.name }}
+                </option>
+            </select>
+            </div>
             <div>
                 <label
                     for="image"

@@ -15,10 +15,10 @@ class AttaqueSeeder extends Seeder
      * @var array
      */
     protected $moves = [
-        ['name' => 'Aqua-Jet', 'type' => 'Eau', 'category' => 'Physique', 'power' => 40, 'accuracy' => 100, 'pp' => 20, 'description' => 'L’utilisateur frappe en priorité.', 'probability' => null],
-        ['name' => 'Anneau Hydro', 'type' => 'Eau', 'category' => 'Statut', 'power' => null, 'accuracy' => null, 'pp' => 20, 'description' => 'L’utilisateur récupère un peu de PV à chaque tour.', 'probability' => null],
+        ['name' => 'Aqua-Jicle', 'type' => 'Eau', 'category' => 'Physique', 'power' => 40, 'accuracy' => 100, 'pp' => 20, 'description' => 'L’utilisateur frappe en priorité.', 'probability' => null],
+        ['name' => 'Hydrocution anale', 'type' => 'Eau', 'category' => 'Statut', 'power' => null, 'accuracy' => null, 'pp' => 20, 'description' => 'L’utilisateur récupère un peu de PV à chaque tour.', 'probability' => null],
         ['name' => 'Queue de Sirène', 'type' => 'Eau', 'category' => 'Physique', 'power' => 90, 'accuracy' => 90, 'pp' => 10, 'description' => 'Aucun effet supplémentaire.', 'probability' => null],
-        ['name' => 'Cogne', 'type' => 'Combat', 'category' => 'Physique', 'power' => 15, 'accuracy' => 100, 'pp' => 20, 'description' => 'Frappe 2 à 5 fois de suite.', 'probability' => null],
+        ['name' => 'Lancer de string', 'type' => 'Combat', 'category' => 'Physique', 'power' => 15, 'accuracy' => 100, 'pp' => 20, 'description' => 'Frappe 2 à 5 fois de suite.', 'probability' => null],
         ['name' => 'Aromathérapie', 'type' => 'Plante', 'category' => 'Statut', 'power' => null, 'accuracy' => null, 'pp' => 5, 'description' => 'Soigne les problèmes de statut de tous les Pokémon de l’équipe.', 'probability' => null],
         ['name' => 'Brume Aromatique', 'type' => 'Fée', 'category' => 'Statut', 'power' => null, 'accuracy' => null, 'pp' => 20, 'description' => 'Augmente la Défense Spéciale d’un coéquipier.', 'probability' => null],
         ['name' => 'Assistance', 'type' => 'Normal', 'category' => 'Statut', 'power' => null, 'accuracy' => null, 'pp' => 20, 'description' => 'Utilise aléatoirement une attaque connue par un membre de l’équipe.', 'probability' => null],

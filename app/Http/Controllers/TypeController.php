@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Types\CreateTypeRequest;
+use App\Http\Requests\Types\UpdateTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -29,11 +31,12 @@ class TypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateTypeRequest $request)
     {
         $type = new Type();
-        $type->name = $request->name;
-        $type->color = $request->color;
+        $validated = $request->validated();
+        $type->fill($validated);
+
         $file = $request->file('image');
         $filename = $file->getClientOriginalName();
         $destinationPath = public_path('storage/images/background');
@@ -62,10 +65,11 @@ class TypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Type $type)
+    public function update(UpdateTypeRequest $request, Type $type)
     {
-        $type->name = $request->name;
-        $type->color = $request->color;
+        $validated = $request->validated();
+        $type->fill($validated);
+
         $file = $request->file('image');
         $filename = $file->getClientOriginalName();
         $destinationPath = public_path('storage/images/background');

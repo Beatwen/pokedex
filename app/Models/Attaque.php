@@ -10,9 +10,13 @@ class Attaque extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'damage',
-        'type',
+        'power',
+        'type_id',
         'description',
+        'category',
+        'accuracy',
+        'pp',
+        'probability',
     ];
     public function pokemon()
     {
