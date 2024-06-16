@@ -7,10 +7,7 @@ import PokemonCard from '@/Components/PokemonCard.vue';
 const props = defineProps({
     pokemon: Object,
 });
-
-
-
-
+console.log(props.pokemon);
 
 function handleImageError() {
     document.getElementById('screenshot-container')?.classList.add('!hidden');
@@ -30,11 +27,11 @@ function handleImageError() {
             >
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
 
-                    <main class="flex">
+                    <div class="flex">
                         <div class="flex w-full">
                                 <PokemonCard :pokemon="poke"></PokemonCard>
                         </div>
-                    </main>
+                    </div>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
                         Ceci est mon footer

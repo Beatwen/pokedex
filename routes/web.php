@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [HomepageController::class, 'index'])->name('index');
-Route::get('/pokemons/{pokemon}', [PokemonController::class, 'show'])->name('pokemon.show');
+Route::get('/pokemons/{pokemon}', [HomepageController::class, 'show'])->name('pokemon.show');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
     Route::get('admin/pokemon', [AdminController::class, 'index'])->name('admin/index');

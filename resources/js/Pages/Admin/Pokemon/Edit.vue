@@ -232,7 +232,7 @@ function handleImageError() {
                 </h3>
                 <div>
                     <div class="my-2 mb-4 block text-m font-medium text-gray-700">
-                        <div class="mb-4 block text-m font-medium text-gray-700"">Attaques actuelles:</div>
+                        <div class="mb-4 block text-m font-medium text-gray-700">Attaques actuelles:</div>
                         <ul>
                             <li
                                 v-for="attaque in pokemon.attaque"
@@ -249,7 +249,7 @@ function handleImageError() {
                         </ul>
                     </div>
                     <div class="my-2 mb-4 block text-sm font-medium text-gray-700">
-                        <div class="mb-4 block text-m font-medium text-gray-700"">Ajouter une attaque:</div>
+                        <div class="mb-4 block text-m font-medium text-gray-700">Ajouter une attaque:</div>
                         <div>
                             <button
                                 v-for="attaque in availableAttaques"
