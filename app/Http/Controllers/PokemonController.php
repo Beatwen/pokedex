@@ -100,7 +100,9 @@ class PokemonController extends Controller
     public function destroy(Pokemon $pokemon)
     {
         $pokemon->delete();
+        return redirect()->route('pokemon.index');
     }
+
     public function addAttaque(Request $request, Pokemon $pokemon)
     {
         $pokemon->attaque()->syncWithoutDetaching($request->attaque_id);

@@ -23,6 +23,7 @@ import { Link } from '@inertiajs/vue3';
                                         class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"
                                     />
                                 </Link>
+
                             </div>
 
                             <!-- Navigation Links -->
@@ -30,7 +31,14 @@ import { Link } from '@inertiajs/vue3';
                                 <NavLink :href="route('index')" :active="route().current('index')">
                                     Pokémon
                                 </NavLink>
+                                <NavLink
+                                    :href="route('login')"
+                                    class=" text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                >
+                                        Log in as admin
+                                </NavLink>
                             </div>
+
                         </div>
 
 

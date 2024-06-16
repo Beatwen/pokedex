@@ -1,16 +1,32 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import { formatDistance } from 'date-fns';
+import Modal from '@/Components/Modal.vue';
 import { fr } from 'date-fns/locale';
 const diffForHumans = (date) => {
     return formatDistance(new Date(date), new Date(), { addSuffix: true, locale: fr});
 }
 const form = useForm({});
+const isModalOpen = ref(false);
+const currentObject = ref(null);
+
+
 const props = defineProps({
     propsObject: Object,
     objectName: String,
 });
-console.log(props.propsObject);
+
+const openModal = (propsObject) => {
+    currentObject.value = propsObject;
+    isModalOpen.value = true;
+    console.log(currentObject.value);
+};
+const confirmDelete = () => {
+    form.delete(route(`${props.objectName}.delete`, currentObject.value));
+    isModalOpen.value = false;
+};
+
 </script>
 
 <template>
@@ -50,22 +66,30 @@ console.log(props.propsObject);
                         >
                             <i class="ri-edit-line"></i>
                         </a>
-                        <form
-                            @submit.prevent="
-                                form.delete(route(`${objectName}.delete`, propsObject))
-                            "
+                        <button
+                            @click="openModal(propsObject)"
+                            class="text-red-500 hover:text-red-700"
+                            :disabled="form.processing"
                         >
-                            <button
-                                propsObject="submit"
-                                class="text-red-500 hover:text-red-700"
-                                :disabled="form.processing"
-                            >
-                                <i class="ri-delete-bin-2-line"></i>
-                            </button>
-                        </form>
+                            <i class="ri-delete-bin-2-line"></i>
+                        </button>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+
+
+    <Modal :show="isModalOpen" @close="isModalOpen = false">
+        <template #default>
+            <div class="p-4">
+                <h2 class="text-lg font-bold">Confirmer</h2>
+                <p>Es-tu sur de vouloir supprimer cet item ?</p>
+                <div class="flex justify-end space-x-4">
+                    <button @click="isModalOpen = false" class="px-4 py-2 rounded text-gray-700">Revenir</button>
+                    <button @click="confirmDelete" class="px-4 py-2 bg-red-600 text-white rounded">Supprimer</button>
+                </div>
+            </div>
+        </template>
+    </Modal>
 </template>

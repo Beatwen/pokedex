@@ -1,41 +1,46 @@
 <script setup>
 import { ref } from 'vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, useForm } from "@inertiajs/vue3";
+const form = useForm({});
+
 </script>
 
 <template>
     <div>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-                <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
+                <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex h-16">
+                        <div class="flex w-full">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="flex items-center space-x-10">
                                 <Link :href="route('index')">
                                     <ApplicationLogo
                                         class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"
                                     />
                                 </Link>
                             </div>
-
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('admin/index')" :active="route().current('admin/index')">
-                                    Pokémon
-                                </NavLink>
-                                <NavLink :href="route('types.index')" :active="route().current('types.index')">
-                                    Types
-                                </NavLink>
-                                <NavLink :href="route('attaques.index')" :active="route().current('attaques.index')">
-                                    Attaques
-                                </NavLink>
+                            <div class="flex justify-between items-center space-x-8 sm:space-x-10 w-full">
+                                <div class="flex m-6 space-x-8 sm:space-x-10">
+                                    <NavLink :href="route('pokemon.index')" :active="route().current('pokemon.index')">
+                                        Pokémon
+                                    </NavLink>
+                                    <NavLink :href="route('types.index')" :active="route().current('types.index')">
+                                        Types
+                                    </NavLink>
+                                    <NavLink :href="route('attaques.index')" :active="route().current('attaques.index')">
+                                        Attaques
+                                    </NavLink>
+                                </div>
+                                <form @submit.prevent="form.post(route('logout'))" method="POST" class="flex items-center justify-end mt-1">
+                                    <button
+                                        type="submit"
+                                        class="text-gray-500 flex justify-end hover:text-gray-700 focus:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 focus:border-gray-300 dark:focus:border-gray-700 border-b-2 border-transparent text-sm font-medium leading-5 transition duration-150 ease-in-out">
+                                        Log out
+                                    </button>
+                                </form>
                             </div>
                         </div>
 

@@ -1,20 +1,11 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
-import { ref } from 'vue';
-import { usePage } from '@inertiajs/vue3';
-import PokemonCard from '@/Components/PokemonCard.vue';
+import { Head } from '@inertiajs/vue3';
+import { usePage, useForm  } from '@inertiajs/vue3';
 const { pokemons } = usePage().props;
-import { useForm } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import AdminTables from '@/Components/AdminTables.vue';
 const form = useForm({});
 
-function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
-}
 </script>
 
 <template>

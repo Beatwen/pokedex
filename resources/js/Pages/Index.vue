@@ -4,6 +4,7 @@ import { ref, computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import PokemonCard from '@/Components/PokemonCard.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 const props = defineProps({
     pokemons: Array,
 });
@@ -39,16 +40,16 @@ const filteredPokemons = computed(() => {
 </script>
 <template>
     <Head title="Index" />
-    <AuthenticatedLayout>
+    <GuestLayout>
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
             <div
                 class="relative min-h-screen flex justify-center selection:bg-[#FF2D20] selection:text-white"
             >
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <div class="py-4">
-                        <input type="text" v-model="search" placeholder="Search by name..." class="border p-2 mr-2">
-                        <select v-model="selectedType" class="border p-2">
-                            <option value="">Types</option>
+                        <input type="text" v-model="search" placeholder="Recherche..." class="w-auto border p-2 mr-2">
+                        <select v-model="selectedType" class="w-52 border p-2">
+                            <option value="">Tous</option>
                             <option v-for="type in allTypes" :key="type">{{ type }}</option>
                         </select>
                     </div>
@@ -68,5 +69,5 @@ const filteredPokemons = computed(() => {
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </GuestLayout>
 </template>

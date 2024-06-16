@@ -58,7 +58,7 @@ function handleImageError() {
 
         </main>
         <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-            Ceci est mon footer
+            Ceci est ma page d'accueil
         </footer>
     </GuestLayout>
 </template >

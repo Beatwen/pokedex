@@ -32,7 +32,7 @@ const form = useForm({
     description: props.pokemon.description,
 });
 const addAttaqueForm = useForm({
-    attaque_id: null, // Preparing to set `attaque_id` before submission
+    attaque_id: null,
 });
 
 const removeAttaqueForm = useForm({

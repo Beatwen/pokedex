@@ -13,10 +13,9 @@ class HomepageController extends Controller
         $pokemons = Pokemon::with('type')->get();
         return Inertia::render('Index' , ['pokemons' => $pokemons]);
     }
-    public function show($pokemon)
+    public function show(Pokemon $pokemon)
     {
+        $pokemon->load('type', 'attaque');
         return Inertia::render('Pokemon/Index', ['pokemon' => $pokemon]);
     }
-
-
 }

@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [HomepageController::class, 'index'])->name('index');
-Route::get('/pokemons/{pokemon}', [HomepageController::class, 'show'])->name('pokemon.show');
+Route::get('/pokemon/{pokemon}', [HomepageController::class, 'show'])->name('pokemon.show');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
-    Route::get('admin/pokemon', [AdminController::class, 'index'])->name('admin/index');
+    Route::get('/pokemon', [AdminController::class, 'index'])->name('pokemon.index');
     Route::get('/types', [TypeController::class, 'index'])->name('types.index');
     Route::get('/attaques', [AttaqueController::class, 'index'])->name('attaques.index');
 

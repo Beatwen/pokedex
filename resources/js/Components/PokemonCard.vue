@@ -6,6 +6,8 @@ import { Link } from "@inertiajs/vue3";
 const props = defineProps({
     pokemon: Object,
 });
+
+
 const assetURL = computed(() => `/storage/${props.pokemon.image}`);
 const assetBackgroundURL = computed(() => `/storage/images/background/${props.pokemon.type[0].name}.png`);
 
@@ -17,7 +19,7 @@ const assetBackgroundURL = computed(() => `/storage/images/background/${props.po
         :style="{   backgroundImage: 'url(' + assetBackgroundURL + ')',
                     backgroundSize: 'cover',
          }"
-        :href="route('pokemon.show', { id: pokemon.id })
+        :href="route('pokemon.show', pokemon)
         "
     >
         <div
