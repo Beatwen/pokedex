@@ -1,0 +1,53 @@
+@startuml Pokedex
+
+' Entities
+class Pokemon {
+  - id: bigint
+  - name: string
+  - life: int
+  - weight: float
+  - image: string
+  - description: text
+  - created_at: timestamp
+  - updated_at: timestamp
+}
+
+class Type {
+  - id: bigint
+  - name: string
+  - color: string
+  - created_at: timestamp
+  - updated_at: timestamp
+}
+
+class Attaque {
+  - id: bigint
+  - name: string
+  - power: int
+  - type_id: bigint
+  - description: text
+  - category: string
+  - accuracy: float
+  - pp: int
+  - probability: float
+  - created_at: timestamp
+  - updated_at: timestamp
+}
+
+' Pivot tables
+class PokemonType {
+  - pokemon_id: bigint
+  - type_id: bigint
+}
+
+class AttaquePokemon {
+  - pokemon_id: bigint
+  - attaque_id: bigint
+}
+
+' Relationships
+Pokemon "0..*" -- "0..*" Type : "pokemon_type"
+Pokemon "0..*" -- "0..*" Attaque : "attaque_pokemon"
+Type "1" -- "0..*" Attaque : "type_id"
+
+@enduml
