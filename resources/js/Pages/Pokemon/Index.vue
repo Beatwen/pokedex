@@ -44,6 +44,10 @@ function handleImageError() {
                                 <td class="p-2 border-b align-top">{{ pokemon.weight }}</td>
                             </tr>
                             <tr>
+                                <th class="text-left font-bold p-2 border-b-2 align-top">Height</th>
+                                <td class="p-2 border-b align-top">{{ pokemon.height }}</td>
+                            </tr>
+                            <tr>
                                 <th class="text-left font-bold p-2 border-b-2 align-top">Attaques</th>
                                 <td class="p-2 border-b align-top">
                                     <ul class="list-disc list-inside">

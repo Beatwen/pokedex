@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             TypeSeeder::class,
-            AttaqueSeeder::class,
             PokemonSeeder::class,
+            AttaqueSeeder::class,
+
         ]);
     }
 }

@@ -27,6 +27,7 @@ class CreatePokemonRequest extends FormRequest
             'type2_id' => 'nullable|integer|exists:types,id',
             'life' => 'required|numeric',
             'weight' => 'required|numeric',
+            'height' => 'required|numeric',
             'image' => 'required|image',
         ];
     }

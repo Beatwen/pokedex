@@ -35,6 +35,7 @@ function handleImageError() {
                             class="border-b hover:bg-gray-50">
                             <td class="px-6 py-4">{{ pokemon.name }}</td>
                             <td class="px-6 py-4">{{ pokemon.weight }}</td>
+                            
                             <td class="px-6 py-4">{{ pokemon.created_at }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex space-x-3">

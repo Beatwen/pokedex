@@ -10,6 +10,7 @@ const props = defineProps({
 const form = useForm({
     name: null,
     weight: null,
+    height:null,
     attack: null,
     life: null,
     type_id: null,
@@ -74,6 +75,25 @@ const submitForm = async () => {
                     {{ form.errors.weight }}
                 </p>
             </div>
+
+            <div class="mb-6">
+                <label
+                    for="height"
+                    class="block text-sm font-medium text-gray-700"
+                    >Taille</label
+                >
+                <input
+                    type="number"
+                    id="height"
+                    v-model="form.height"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Entrez la taille"
+                />
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.height">
+                    {{ form.errors.height }}
+                </p>
+            </div>
+
             <div class="mb-6">
                 <label for="vie" class="block text-sm font-medium text-gray-700"
                     >PV</label

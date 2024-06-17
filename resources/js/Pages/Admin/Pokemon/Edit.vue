@@ -26,6 +26,7 @@ const form = useForm({
     name: props.pokemon.name,
     life: props.pokemon.life,
     weight: props.pokemon.weight,
+    height: props.pokemon.height,
     type_id: props.pokemon.type[0].id,
     type_id2: typePoke2,
     image: props.pokemon.image,
@@ -108,6 +109,23 @@ function handleImageError() {
                         {{ form.errors.life }}
                     </p>
                 </div>
+                <div class="mb-6">
+                <label
+                    for="height"
+                    class="block text-sm font-medium text-gray-700"
+                    >Taille</label
+                >
+                <input
+                    type="number"
+                    id="height"
+                    v-model="form.height"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Entrez la taille"
+                />
+                <p class="mt-2 text-sm text-red-600" v-if="form.errors.height">
+                    {{ form.errors.height }}
+                </p>
+            </div>
                 <div class="mb-6">
                     <label
                         for="weight"

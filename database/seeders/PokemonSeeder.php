@@ -14,7 +14,8 @@ class PokemonSeeder extends  Seeder
         $pokemon = Pokemon::factory()->create([
             'name' => 'Carapute',
             'life' => 100,
-            'weight' => 100.0,
+            'weight' => 25.0,
+            'height' => 70.0,
             'image' => 'images/pokemon/carapute.jpeg',
             'description' => 'Carapute, un cousin éloigné de Carapuce, avec une petite touche de malice ! Contrairement à son parent relativement timide et réservé, Carapute a exploré les côtés plus... colorés de la vie Pokémon. Attention si vous croisez Carapute sur votre chemin, il pourrait bien vous entraîner dans une escapade nocturne dont vous vous souviendrez!'
         ]);
@@ -25,7 +26,8 @@ class PokemonSeeder extends  Seeder
         $Bitebizarre = Pokemon::factory()->create([
             'name' => 'Bitebizarre',
             'life' => 112,
-            'weight' => 100.0,
+            'weight' => 30.0,
+            'height' => 75.0,
             'image' => 'images/pokemon/bitebizarre.jpeg',
 
         ]);
@@ -38,7 +40,8 @@ class PokemonSeeder extends  Seeder
         $Miaouw = Pokemon::factory()->create([
             'name' => 'Miaouw',
             'life' => 100,
-            'weight' => 100.0,
+            'weight' => 70.0,
+            'height' => 120,
             'image' => 'images/pokemon/miaouw.jpg',
         ]);
         $MiaouwType = Type::firstOrCreate([
@@ -49,7 +52,8 @@ class PokemonSeeder extends  Seeder
         $Miaouwtwo = Pokemon::factory()->create([
             'name' => 'MiaouwTwo',
             'life' => 450,
-            'weight' => 110.0,
+            'weight' => 80.0,
+            'height' => 220.0,
             'image' => 'images/pokemon/miaouwtwo.jpeg',
         ]);
         $MiaouwtwoType = Type::firstOrCreate([

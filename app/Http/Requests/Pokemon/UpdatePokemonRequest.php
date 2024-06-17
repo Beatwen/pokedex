@@ -27,6 +27,7 @@ class UpdatePokemonRequest extends FormRequest
             'type_id2' => 'nullable|integer|exists:types,id',
             'life' => 'required|numeric',
             'weight' => 'required|numeric',
+            'height' => 'required|numeric',
         ];
         if ($this->hasFile('image')) {
             $rules['image'] = 'image|file|max:2048';

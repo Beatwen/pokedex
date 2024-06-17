@@ -33,11 +33,13 @@ const assetBackgroundURL = computed(() => `/storage/images/background/${props.po
         </div>
         <div class="flex flex-col justify-center items-center space-y-1">
             <div class="text-gray-800 font-bold text-xs">Poids : {{ pokemon.weight }}</div>
+            <div class="text-gray-800 font-bold text-xs">Taille : {{ pokemon.height }}</div>
             <div class="flex text-gray-800 font-bold text-xs"> Type :
                 <div v-for="(type, index) in pokemon.type" :key="type.id" class="text-gray-800 font-bold text-xs pl-2">
                      {{ type.name }}<span v-if="index < pokemon.type.length - 1">,</span>
                 </div>
             </div>
+
         </div>
     </Link>
 </template>

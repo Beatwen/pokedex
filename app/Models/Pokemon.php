@@ -11,6 +11,7 @@ class Pokemon extends Model
         'name',
         'life',
         'weight',
+        'height',
         'type',
         'description',
     ];
