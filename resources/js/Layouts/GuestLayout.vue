@@ -8,7 +8,6 @@ const page = usePage();
 const user = computed(() => page.props.auth.user);
 
 
-
 </script>
 
 <template>
@@ -34,9 +33,6 @@ const user = computed(() => page.props.auth.user);
                                 <NavLink :href="route('index')" :active="route().current('index')">
                                     Pokémon
                                 </NavLink>
-                                <NavLink :href="route('index')" :active="route().current('index')">
-
-                                </NavLink>
                                 <NavLink
                                     v-if="user?.id"
                                     :href="route('pokemon.index')"
@@ -54,6 +50,7 @@ const user = computed(() => page.props.auth.user);
                                 >
                                     Log in
                                 </NavLink>
+                                <MusicPlayer class="p-1.5"/>
                             </div>
 
                         </div>
@@ -100,7 +97,7 @@ const user = computed(() => page.props.auth.user);
 
             <!-- Page Content -->
             <main class="flex-grow">
-                <MusicPlayer/>
+
                 <slot />
             </main>
             <footer class="bg-gray-800 p-4">

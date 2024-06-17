@@ -1,27 +1,33 @@
 <script setup>
-import { Head, Link, usePage, useForm } from "@inertiajs/vue3";
-import {} from "@inertiajs/vue3";
+import { Head, useForm } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-
+import { ref } from "vue";
 const form = useForm({
     name: null,
     image: null,
     color: null,
 });
 
-function handleImageError() {
-    document.getElementById("screenshot-container")?.classList.add("!hidden");
-    document.getElementById("docs-card")?.classList.add("!row-span-1");
-    document.getElementById("docs-card-content")?.classList.add("!flex-row");
-    document.getElementById("background")?.classList.add("!hidden");
-}
+// message pour montrer si le formulaire est bien passé
+
+const successMessage = ref('');
+const submitForm = async () => {
+    await form.post(route('types.create'), {
+        onSuccess: () => {
+            successMessage.value = 'Type enregistré avec succès';
+        },
+        onError: () => {
+            successMessage.value = 'Type non enregistré, veuillez réessayer';
+        }
+    });
+};
 
 </script>
 <template>
     <Head title="Index" />
     <AuthenticatedLayout>
         <form
-            @submit.prevent="form.post(route('types.create'))"
+            @submit.prevent="submitForm"
             class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md"
         >
             <div class="mb-4">
@@ -85,6 +91,7 @@ function handleImageError() {
             >
                 Créer
             </button>
+            <p class="mt-4 text-sm text-green-600" v-if="successMessage">{{ successMessage }}</p>
         </form>
     </AuthenticatedLayout>
 </template>

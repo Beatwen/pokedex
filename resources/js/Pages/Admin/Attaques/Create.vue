@@ -1,6 +1,8 @@
 <script setup>
 import { Head, useForm } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { ref } from "vue";
+
 
 const props = defineProps({
     types: Object,
@@ -17,19 +19,27 @@ const form = useForm({
     description: null,
 });
 
-function handleImageError() {
-    document.getElementById("screenshot-container")?.classList.add("!hidden");
-    document.getElementById("docs-card")?.classList.add("!row-span-1");
-    document.getElementById("docs-card-content")?.classList.add("!flex-row");
-    document.getElementById("background")?.classList.add("!hidden");
-}
+// message pour montrer si le formulaire est bien passé
+
+const successMessage = ref('');
+const submitForm = async () => {
+    await form.post(route('attaques.create'), {
+        onSuccess: () => {
+            successMessage.value = 'Attaque enregistré avec succès';
+        },
+        onError: () => {
+            successMessage.value = 'Attaque non enregistré, veuillez réessayer';
+        }
+    });
+};
+
 </script>
 
 <template>
     <Head title="Index" />
     <AuthenticatedLayout>
         <form
-            @submit.prevent="form.post(route('attaques.create'))"
+            @submit.prevent="submitForm"
             class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md"
         >
             <!-- Nom de l'attaque -->
@@ -145,6 +155,7 @@ function handleImageError() {
             >
                 Créer
             </button>
+            <p class="mt-4 text-sm text-green-600" v-if="successMessage">{{ successMessage }}</p>
         </form>
     </AuthenticatedLayout>
 </template>

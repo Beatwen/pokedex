@@ -6,7 +6,7 @@ import { useForm } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import AdminTables from '@/Components/AdminTables.vue';
 
-
+const form = useForm({});
 const props = defineProps({
     types: Object,
 });
