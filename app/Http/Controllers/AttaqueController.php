@@ -73,7 +73,7 @@ class AttaqueController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Type $attaque)
+    public function destroy(Attaque $attaque)
     {
         $attaque->delete();
     }

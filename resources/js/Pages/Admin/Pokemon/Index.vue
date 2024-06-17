@@ -1,10 +1,12 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import { usePage, useForm  } from '@inertiajs/vue3';
-const { pokemons } = usePage().props;
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import AdminTables from '@/Components/AdminTables.vue';
 const form = useForm({});
+const props = defineProps({
+    pokemons: Object,
+});
 
 </script>
 
@@ -20,8 +22,5 @@ const form = useForm({});
             </div>
 
         </main>
-        <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-            Ceci est mon footer
-        </footer>
     </AuthenticatedLayout>
 </template >

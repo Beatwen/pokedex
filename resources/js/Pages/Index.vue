@@ -19,13 +19,6 @@ const allTypes = computed(() => {
     return Array.from(typesSet);  // Convert the set back into an array
 });
 
-
-function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
-}
 const search = ref('');
 const selectedType = ref('');
 
@@ -45,7 +38,7 @@ const filteredPokemons = computed(() => {
             <div
                 class="relative min-h-screen flex justify-center selection:bg-[#FF2D20] selection:text-white"
             >
-                <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+                <div class="">
                     <div class="py-4">
                         <input type="text" v-model="search" placeholder="Recherche..." class="w-auto border p-2 mr-2">
                         <select v-model="selectedType" class="w-52 border p-2">
@@ -53,19 +46,15 @@ const filteredPokemons = computed(() => {
                             <option v-for="type in allTypes" :key="type">{{ type }}</option>
                         </select>
                     </div>
-                    <main class="flex">
+                    <main class="flex w-full">
                         <div class="flex w-full">
-                            <ul class="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8">
-                            <li v-for="poke in filteredPokemons" :key="poke.id">
-                                <PokemonCard :pokemon="poke"></PokemonCard>
-                            </li>
+                            <ul class="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 w-full">
+                                <li v-for="poke in filteredPokemons" :key="poke.id">
+                                    <PokemonCard :pokemon="poke"></PokemonCard>
+                                </li>
                             </ul>
                         </div>
                     </main>
-
-                    <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                        Ceci est mon footer
-                    </footer>
                 </div>
             </div>
         </div>

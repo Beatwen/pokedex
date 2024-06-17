@@ -12,6 +12,10 @@ use Inertia\Inertia;
 
 Route::get('/', [HomepageController::class, 'index'])->name('index');
 Route::get('/pokemon/{pokemon}', [HomepageController::class, 'show'])->name('pokemon.show');
+Route::get('/music', function () {
+    return response()->file(storage_path('app/public/music/generic.mp3'));
+});
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
     Route::get('/pokemon', [AdminController::class, 'index'])->name('pokemon.index');

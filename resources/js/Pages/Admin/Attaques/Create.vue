@@ -3,18 +3,18 @@ import { Head, useForm } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
 const props = defineProps({
-    attack: Object,
+    types: Object,
 });
 
 const form = useForm({
-    name: props.attack.name,
-    power: props.attack.power,
-    category: props.attack.category,
-    accuracy: props.action.accuracy,
-    type_id: props.attack.type_id,
-    pp: props.attack.pp,
-    probability: props.attack.probability,
-    description: props.attack.description,
+    name: null,
+    power: null,
+    category: null,
+    accuracy: null,
+    type_id: null,
+    pp: null,
+    probability: null,
+    description: null,
 });
 
 function handleImageError() {
