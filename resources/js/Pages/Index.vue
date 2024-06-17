@@ -13,10 +13,10 @@ const allTypes = computed(() => {
     const typesSet = new Set();
     props.pokemons.forEach(pokemon => {
         pokemon.type.forEach(type => {
-            typesSet.add(type.name);  // Store only unique type names
+            typesSet.add(type.name);
         });
     });
-    return Array.from(typesSet);  // Convert the set back into an array
+    return Array.from(typesSet);
 });
 
 const search = ref('');

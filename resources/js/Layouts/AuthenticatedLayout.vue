@@ -9,9 +9,9 @@ const form = useForm({});
 
 <template>
     <div>
-        <div class=" bg-gray-100 dark:bg-gray-900 flex flex-col h-screen">
+        <div class=" bg-gray-100 dark:bg-gray-900 flex flex-col min-h-screen">
             <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-                <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16">
                         <div class="flex w-full">
                             <!-- Logo -->

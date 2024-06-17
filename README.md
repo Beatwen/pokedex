@@ -1,4 +1,4 @@
-# Pokedex Application
+# Pokedex
 
 Bienvenue sur le dépôt GitHub de l'application Pokedex! Cette application web permet aux utilisateurs de visualiser et de gérer des Pokémon, leurs types, et leurs attaques. Contrairement à un Pokedex traditionnel, cette version présente des Pokémon marrants et un peu déroutants, ajoutant une touche d'humour et de surprise pour les utilisateurs. Elle est construite avec Laravel pour le backend et Vue.js avec Inertia.js pour le frontend, offrant une expérience utilisateur fluide et réactive.
 

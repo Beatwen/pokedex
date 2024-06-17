@@ -6,7 +6,7 @@ use App\Models\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class AddPokemonTest extends DuskTestCase
+class ShowPokemonTest extends DuskTestCase
 {
     public function testAddPokemon()
     {

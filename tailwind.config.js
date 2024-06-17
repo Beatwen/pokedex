@@ -30,8 +30,12 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 custom: ['GillSans-Bold', 'sans-serif'],
             },
+            textShadow: {
+                'outline': '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000',
+                'subtle-outline': '0.5px 0.5px 0 #000, -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000',
+              }
         },
     },
 
-    plugins: [forms, aspectRatio],
+    plugins: [forms, aspectRatio,require('tailwindcss-textshadow')],
 };

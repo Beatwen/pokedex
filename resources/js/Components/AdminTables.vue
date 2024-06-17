@@ -30,7 +30,7 @@ const confirmDelete = () => {
 </script>
 
 <template>
-    <table class="w-full text-sm text-gray-700">
+    <table class="w-full text-sm text-gray-700 p-6">
         <thead class="bg-gray-100">
             <tr>
                 <th class="px-6 py-3 text-left font-medium border-b-2">Nom</th>

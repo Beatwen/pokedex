@@ -26,7 +26,7 @@ const assetBackgroundURL = computed(() => `/storage/images/background/${props.po
             class="font-custom font-bold text-gray-800 flex items-center text-l w-full mt-0.5"
         >
         <div class="font-custom ml-2 flex justify-start">{{ pokemon.name }}</div>
-            <div class="font-custom ml-auto flex justify-end pr-8 text-red-600">{{ pokemon.life }}HP</div>
+            <div class="font-custom ml-auto flex justify-end pr-8 text-shadow-subtle-outline text-red-600">{{ pokemon.life }}HP</div>
         </div>
         <div class="flex justify-center items-center pb-5">
             <img :src="assetURL" alt="{{pokemon.name}}" class="w-pokemon h-pokemon object-cover -mt-1.5">

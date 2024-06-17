@@ -23,7 +23,7 @@ function handleImageError() {
 <template>
     <Head title="Index" />
     <AuthenticatedLayout>
-        <main class="flex flex-col items-center w-full mt-8">
+        <main class="flex flex-col items-center w-full mt-8 mb-8">
             <div class="w-full max-w-4xl px-4 py-3 bg-white shadow-md rounded-lg">
                 <AdminTables :propsObject="props.types" objectName="types"></AdminTables>
                 <form @submit.prevent="form.get(route('types.create'))" class="w-full max-w-4xl px-4 py-3 mt-4 bg-white shadow-md rounded-lg">

@@ -18,7 +18,7 @@ class TypeSeeder extends Seeder
             ['name' => 'Eau', 'color' => '#6390F0', 'image' => 'images/background/eau.png'],
             ['name' => 'Électrik', 'color' => '#F7D02C', 'image' => 'images/background/électrik.png'],
             ['name' => 'Feu', 'color' => '#EE8130', 'image' => 'images/background/feu.png'],
-            ['name' => 'Fée', 'color' => '#D685AD', 'image' => 'images/background/fee.png'],
+            ['name' => 'Fée', 'color' => '#D685AD', 'image' => 'images/background/fée.png'],
             ['name' => 'Glace', 'color' => '#96D9D6', 'image' => 'images/background/glace.png'],
             ['name' => 'Insecte', 'color' => '#A6B91A', 'image' => 'images/background/insecte.png'],
             ['name' => 'Normal', 'color' => '#A8A77A', 'image' => 'images/background/normal.png'],
