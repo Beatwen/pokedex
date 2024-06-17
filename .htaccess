@@ -1,3 +1,0 @@
-<IfModule mod_headers.c>
-    Header set Permissions-Policy "geolocation=(self), microphone=(self), camera=(self)"
-</IfModule>
