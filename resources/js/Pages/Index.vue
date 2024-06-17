@@ -39,11 +39,11 @@ const filteredPokemons = computed(() => {
                 class="relative min-h-screen flex justify-center selection:bg-[#FF2D20] selection:text-white"
             >
                 <div class="">
-                    <div class="py-4">
+                    <div class="py-4 flex justify-center">
                         <input type="text" v-model="search" placeholder="Recherche..." class="w-auto border p-2 mr-2">
-                        <select v-model="selectedType" class="w-52 border p-2">
+                        <select name="search_type" id="search_type" v-model="selectedType" class="w-52 border p-2">
                             <option value="">Tous</option>
-                            <option v-for="type in allTypes" :key="type">{{ type }}</option>
+                            <option v-for="type in allTypes" :key="type.id">{{ type }}</option>
                         </select>
                     </div>
                     <main class="flex w-full">

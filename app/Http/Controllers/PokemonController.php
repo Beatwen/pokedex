@@ -93,7 +93,6 @@ class PokemonController extends Controller
         }
         $pokemon->save();
     }
-
     /**
      * Remove the specified resource from storage.
      */

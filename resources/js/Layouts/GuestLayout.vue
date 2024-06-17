@@ -1,11 +1,13 @@
 <script setup>
 import NavLink from '@/Components/NavLink.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import MusicPlayer from '@/Components/MusicPlayer.vue';
 import { Link, usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 const page = usePage();
 const user = computed(() => page.props.auth.user);
+const showingNavigationDropdown = ref(false);
 
 
 </script>
@@ -40,9 +42,6 @@ const user = computed(() => page.props.auth.user);
                                 >
                                     Admin Dashboard
                                 </NavLink>
-
-
-                                <!-- If the user is not an admin, show the regular login link -->
                                 <NavLink
                                     v-else
                                     :href="route('login')"
@@ -50,15 +49,15 @@ const user = computed(() => page.props.auth.user);
                                 >
                                     Log in
                                 </NavLink>
-                                <MusicPlayer class="p-1.5"/>
+                                <div class="flex items-center text-gray-500">Un petit kif? ----> </div>
+                                    <MusicPlayer class="p-1.5"/>
                             </div>
-
                         </div>
-                        <!-- Hamburger -->
-                        <div class="-me-2 flex items-center sm:hidden">
+                       <!-- Hamburger -->
+                       <div class="-me-2 flex items-center sm:hidden">
                             <button
                                 @click="showingNavigationDropdown = !showingNavigationDropdown"
-                                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out"
+                                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
                             >
                                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path
@@ -85,6 +84,26 @@ const user = computed(() => page.props.auth.user);
                             </button>
                         </div>
                     </div>
+                </div>
+
+                <!-- Responsive Navigation Menu -->
+                <div
+                    :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
+                    class="sm:hidden flex flex-col justify-center"
+                >
+                        <ResponsiveNavLink :href="route('index')" :active="route().current('index')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Pokedex
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink  v-if="user?.id" :href="route('pokemon.index')" :active="route().current('pokemon.index')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Admin Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink v-else :href="route('login')" :active="route().current('login')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Login
+                        </ResponsiveNavLink>
+
+
+                    <!-- Responsive Settings Options -->
+
                 </div>
             </nav>
 

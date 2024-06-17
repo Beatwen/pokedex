@@ -15,6 +15,7 @@ const assetBackgroundURL = computed(() => `/storage/images/background/${props.po
 
 <template>
     <Link
+        :id="'pokemon-' + pokemon.id"
         class="flex flex-col w-64 space-y-2 bg-[url('assetBackgroundURL')] rounded-md shadow-md p-4 m-4 hover:shadow-lg hover:scale-125 transition aspect-custom overflow-hidden"
         :style="{   backgroundImage: 'url(' + assetBackgroundURL + ')',
                     backgroundSize: 'cover',

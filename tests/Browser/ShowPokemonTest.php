@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\Browser;
 
 use App\Models\User;
@@ -8,23 +7,15 @@ use Tests\DuskTestCase;
 
 class ShowPokemonTest extends DuskTestCase
 {
-    public function testAddPokemon()
+    public function testRandomPokemonCard()
     {
         $this->browse(function (Browser $browser) {
-            $user = User::find(1);
-            $browser->loginAs($user)
-                    ->visit('/admin/pokemon/create')
-                    ->type('#name', 'Pikachu')
-                    ->type('#weight', '6.0')
-                    ->type('#height', '25')
-                    ->type('#life', '35')
-                    ->select('type_id', '5')
-                    ->attach('#image', __DIR__.'/files/pikapoop.jpg')
-                    ->click('#submit')
-                    ->waitForText("Pokemon enregistré avec succès", 5)
-                    ->screenshot('pokemon_creation_success');
+            $browser->visit('/')
+                    ->click('#pokemon-3')
+                    ->waitForText("Miaouw est un Pokémon qui a du caractère.", 10)  // Attente maximale de 10 secondes
+                    ->assertSee("Miaouw est un Pokémon qui a du caractère.")
+                    ->screenshot('pokemon_show');
+
         });
     }
 }
-
-
