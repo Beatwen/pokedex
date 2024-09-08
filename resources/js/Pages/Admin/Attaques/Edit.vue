@@ -6,7 +6,7 @@ const props = defineProps({
     attaques: Object,
     types: Array,
 });
-console.log(props.attaques);
+console.log(attaques);
 const form = useForm({
     name: props.attaques.name,
     power: props.attaques.power,

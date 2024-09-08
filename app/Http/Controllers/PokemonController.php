@@ -17,7 +17,7 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -34,7 +34,6 @@ class PokemonController extends Controller
      */
     public function store(CreatePokemonRequest $request)
     {
-
         $pokemon = new Pokemon();
         $validated = $request->validated();
         $pokemon->fill($validated);
