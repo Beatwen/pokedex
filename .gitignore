@@ -1,6 +1,6 @@
 /.phpunit.cache
 /pokedex/
-/storage/app/public/images/background/rename_images.sh
+/storage/app/public/images/background/
 /storage/app/public/images/pokemon/blochet.png
 /storage/app/public/images/pokemon/moderately_blurred_architecture_liege_1920x1080.jpg
 /node_modules
