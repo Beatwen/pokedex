@@ -14,8 +14,8 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-        <div class="flex flex-col min-h-screen w-full bg-gray-100 dark:bg-gray-900">
-            <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex flex-col min-h-screen w-full bg-gray-100">
+            <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -24,7 +24,7 @@ const showingNavigationDropdown = ref(false);
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('index')">
                                     <ApplicationLogo
-                                        class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"
+                                        class="block h-9 w-auto fill-current text-gray-800"
                                     />
                                 </Link>
 
@@ -38,14 +38,14 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink
                                     v-if="user?.id"
                                     :href="route('pokemon.index')"
-                                    class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                    class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                                 >
                                     Admin Dashboard
                                 </NavLink>
                                 <NavLink
                                     v-else
                                     :href="route('login')"
-                                    class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                    class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                                 >
                                     Log in
                                 </NavLink>
@@ -91,13 +91,13 @@ const showingNavigationDropdown = ref(false);
                     :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
                     class="sm:hidden flex flex-col justify-center"
                 >
-                        <ResponsiveNavLink :href="route('index')" :active="route().current('index')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        <ResponsiveNavLink :href="route('index')" :active="route().current('index')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                             Pokedex
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink  v-if="user?.id" :href="route('pokemon.index')" :active="route().current('pokemon.index')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        <ResponsiveNavLink  v-if="user?.id" :href="route('pokemon.index')" :active="route().current('pokemon.index')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                             Admin Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink v-else :href="route('login')" :active="route().current('login')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        <ResponsiveNavLink v-else :href="route('login')" :active="route().current('login')" class="text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                             Login
                         </ResponsiveNavLink>
 
@@ -108,7 +108,7 @@ const showingNavigationDropdown = ref(false);
             </nav>
 
             <!-- Page Heading -->
-            <header class="bg-white dark:bg-gray-800 shadow" v-if="$slots.header">
+            <header class="bg-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
