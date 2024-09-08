@@ -17,7 +17,7 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
