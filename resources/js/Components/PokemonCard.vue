@@ -1,16 +1,11 @@
 <script setup>
 import { computed } from "vue";
 import { Link } from "@inertiajs/vue3";
-
-
 const props = defineProps({
     pokemon: Object,
 });
-
-
 const assetURL = computed(() => `/storage/${props.pokemon.image}`);
 const assetBackgroundURL = computed(() => `/storage/images/background/${props.pokemon.type[0].name}.png`);
-
 </script>
 
 <template>

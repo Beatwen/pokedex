@@ -28,7 +28,6 @@ const confirmDelete = () => {
 };
 
 </script>
-
 <template>
     <table class="w-full text-sm text-gray-700 p-6">
         <thead class="bg-gray-100">
