@@ -1,27 +1,30 @@
-name: Deploy to Server
+name: Deploy to Server via SSH
 
 on:
   push:
     branches:
-      - main  # Deploy only when pushing to the main branch
+      - main  
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
-
-    - name: Deploy files to server
-      run: |
-        rsync -avz --delete \
-          -e "ssh -o StrictHostKeyChecking=no" \
-          ./ user@your-server-ip:/var/www/html/pokedex/
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v0.1.3
+        with:
+          host: ${{ secrets.SERVER_IP }}  
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}  
+          script: |
+            cd /var/www/html/portfolio
+            git pull origin main
+            composer install --no-dev --quiet
+            php artisan migrate --force
+            npm install
+            npm run build
+            php artisan cache:clear
+            php artisan config:clear
