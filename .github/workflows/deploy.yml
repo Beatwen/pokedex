@@ -16,7 +16,7 @@ jobs:
     - name: Setup SSH
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ secrets.SSH_SERVER_KEY }}
+        ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
 
     - name: Deploy files to server
       run: |
@@ -24,4 +24,4 @@ jobs:
           -e "ssh -o StrictHostKeyChecking=no" \
           ./ user@your-server-ip:/var/www/html/pokedex/
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_SERVER_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
